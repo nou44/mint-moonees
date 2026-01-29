@@ -418,6 +418,14 @@ input:hover{
   70% { transform: scale(1.2); }
   100% { transform: scale(1); opacity:1; }
 }
+@media (max-width:768px){
+  .mint-success{
+    font-size:28px;
+    padding:0 20px;
+    width:100%;
+  }
+}
+
 /* ===== SHAKE MINT BUTTON ===== */
 .shake {
   animation: shakeBtn 0.6s ease;
