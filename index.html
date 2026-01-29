@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Polygon NFT Mint</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="app.css">
+</head>
+<canvas id="bg"></canvas>
+
+<body>
+<div class="layout">
+
+  <div class="side left">
+    <img class="side-img" src="img/1.gif">
+    <img class="side-img" src="img/2.gif">
+    <img class="side-img" src="img/3.gif">
+  </div>
+
+  <div class="mint-wrapper">
+    <div class="mint-card card">
+    <h1 class="title logo-title">
+  <img src="img/logo.png" class="logo-img" alt="Moonees Logo">
+  <span>Moonees Mint</span>
+</h1>
+
+
+      <p id="wallet">Not connected</p>
+      <p id="price">Price: --</p>
+
+      <input id="amount" type="number" min="1" value="1"/>
+
+      <button id="connectBtn" class="btn primary">Connect Wallet</button>
+      <button id="mintBtn" class="btn glow" disabled>Mint</button>
+
+      <p id="status"></p>
+    </div>
+  </div>
+
+  <div class="side right">
+   
+    <img class="side-img" src="img/4.gif">
+    <img class="side-img" src="img/5.gif">
+    <img class="side-img" src="img/6.gif">
+  </div>
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="space.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
