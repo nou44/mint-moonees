@@ -46,16 +46,33 @@ const mintBtn = document.getElementById("mintBtn");
 
 connectBtn.addEventListener("click", connectWallet);
 mintBtn.addEventListener("click", mintNFT);
+// ===== MOBILE WALLET AUTO REDIRECT =====
+(function autoOpenWallet() {
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (!isMobile) return;
+
+  if (window.ethereum) return;
+
+  const dappUrl = window.location.href.replace(/^https?:\/\//, "");
+
+  const metamaskLink = `https://metamask.app.link/dapp/${dappUrl}`;
+
+  // Auto open MetaMask
+  window.location.href = metamaskLink;
+})();
 
 async function connectWallet() {
   if (connecting) return;
   connecting = true;
 
   if (!window.ethereum) {
-    alert("MetaMask not found");
-    connecting = false;
-    return;
-  }
+  document.getElementById("status").innerText =
+    "Open in MetaMask or Wallet Browser 📱";
+  connecting = false;
+  return;
+}
+
 
   try {
     await ethereum.request({ method: "eth_requestAccounts" });
