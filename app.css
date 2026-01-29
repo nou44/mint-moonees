@@ -6,6 +6,13 @@ body {
   font-family: "Bungee", sans-serif;
   color:white;
 }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
 
 #bg {
   position: fixed;
@@ -388,7 +395,7 @@ input:hover{
 
 @keyframes fall {
   to {
-    transform: translateY(110vh) rotate(720deg);
+    transform: translateY(100vh) rotate(720deg);
     opacity: 0;
   }
 }
