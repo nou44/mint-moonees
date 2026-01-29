@@ -67,24 +67,29 @@ async function connectWallet() {
   connecting = true;
 
   if (!window.ethereum) {
-  document.getElementById("status").innerText =
-    "Open in MetaMask or Wallet Browser 📱";
-  connecting = false;
-  return;
-}
-
+    document.getElementById("status").innerText =
+      "Open in MetaMask / Trust Wallet Browser 📱";
+    connecting = false;
+    return;
+  }
 
   try {
-    await ethereum.request({ method: "eth_requestAccounts" });
+    document.getElementById("status").innerText = "Connecting...";
 
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+    provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+    await provider.send("eth_requestAccounts", []);
+
     signer = provider.getSigner();
     contract = new ethers.Contract(CONTRACT_ADDRESS, ABI, signer);
 
-    await ethereum.request({
-      method: "wallet_switchEthereumChain",
-      params: [{ chainId: "0x89" }],
-    });
+    try {
+      await provider.send("wallet_switchEthereumChain", [
+        { chainId: "0x89" },
+      ]);
+    } catch (e) {
+      console.log("Chain switch skipped");
+    }
 
     const addr = await signer.getAddress();
     document.getElementById("wallet").innerText =
@@ -95,13 +100,16 @@ async function connectWallet() {
       "Price: " + ethers.utils.formatEther(price) + " MATIC";
 
     mintBtn.disabled = false;
+    document.getElementById("status").innerText = "Connected ✅";
+
   } catch (e) {
     console.log(e);
-    alert(e.message || "Connect failed");
+    document.getElementById("status").innerText = "Connection cancelled";
   }
 
   connecting = false;
 }
+
 
 async function mintNFT() {
   if (!contract) {
