@@ -278,8 +278,8 @@ input {
 }
 
 .logo-img{
-  width:90px;
-  height:90px;
+  width:130px;
+  height:130px;
   object-fit:contain;
   filter: drop-shadow(0 0 6px rgba(255,140,60,.9));
   animation: logoFloat 4s ease-in-out infinite;
